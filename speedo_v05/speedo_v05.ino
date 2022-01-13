@@ -56,6 +56,11 @@ if (sensor > 600) { //if hall is "triggered" i.e. detects magnetic field.
 else {
   digitalWrite(13, LOW); // Turn off LED
   hallTrigger = false; // reset trigger
+  Serial.println(millis()); // I want to see how millis is counting in this condition
+  if (millis() - previousMillis > 2960){ // value of millis that causes calculation to be less than 1mph
+    tft.setCursor(140,120);
+    tft.print("0.00"); // set resting value of zero
+  }
 }
 //Serial.println(sensor); // print output of sensor
 delay(10);
